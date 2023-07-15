@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.17.2",
     "knex": "^2.3.0",
     "react-icons": "^4.10.1",
