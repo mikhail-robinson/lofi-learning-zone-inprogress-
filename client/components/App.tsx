@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { fetchFruits } from '../slices/fruits'
-import Play from './Play'
+import PlayButton from './PlayButton'
 
 function App() {
   const fruits = useAppSelector((state) => state.fruits)
@@ -11,7 +11,7 @@ function App() {
     <>
       <div className="app">
         <h1>Cosy Zone</h1>
-        <Play />
+        <PlayButton />
       </div>
     </>
   )
