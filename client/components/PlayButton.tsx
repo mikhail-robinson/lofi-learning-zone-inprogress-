@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
 import YouTube from 'react-youtube'
-
-// const youtubeAPIKey = process.env.REACT_APP_YOUTUBE_API_KEY
+import YOUTUBE_API_KEY from './config'
 
 function PlayButton() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -22,7 +21,7 @@ function PlayButton() {
         playerRef.current.getPlaylist()[playerRef.current.getPlaylistIndex()]
 
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=AIzaSyD9BrjHAaK853mZhyQC66pnXcL9XUm-fns`,
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`,
       )
       const data = await response.json()
       console.log('THis is the API data', data)
