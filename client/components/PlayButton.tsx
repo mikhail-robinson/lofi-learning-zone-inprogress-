@@ -6,6 +6,8 @@ import YOUTUBE_API_KEY from './config'
 const PLAYLIST_ID = 'PLOzDu-MXXLliO9fBNZOQTBDddoA3FzZUo'
 const YOUTUBE_API_URL =
   'https://www.googleapis.com/youtube/v3/videos?part=snippet'
+// const LIVE_ATC_URL =
+//   'https://www.liveatc.net/hlisten.php?mount=kpoc2_klax_app_east_feeder&icao=klax'
 
 const playerVars = {
   autoplay: 0,
@@ -28,18 +30,21 @@ function getYoutubeApiUrl(videoId: string) {
 }
 
 function PlayButton() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentSong, setCurrentSong] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false) //indicates if the music is playing
+  const [currentSong, setCurrentSong] = useState('') //stores the current song
+  const [isLoading, setIsLoading] = useState(false) //inidicates if the app is loading or not
   const playerRef = useRef<Player | null>(null)
+  // const atcAudioRef = useRef(new Audio(LIVE_ATC_URL))
 
   useEffect(() => {
+    //fetch the song title whenever the isPlaying state changes
     if (isPlaying) {
       fetchSongTitle()
     }
   }, [isPlaying])
 
   async function fetchSongTitle() {
+    //fetches the song title from the youtube API
     try {
       setIsLoading(true)
       const videoId =
@@ -63,10 +68,17 @@ function PlayButton() {
   }
 
   function handleMusicPlaylist() {
+    //controls the pause/play functionality of the youtube player
     setIsPlaying((prevState) => !prevState)
     setCurrentSong('')
     if (playerRef.current) {
-      isPlaying ? playerRef.current.pauseVideo() : playerRef.current.playVideo()
+      if (isPlaying) {
+        playerRef.current.pauseVideo()
+        // atcAudioRef.current.pause()
+      } else {
+        playerRef.current.playVideo()
+        // atcAudioRef.current.play()
+      }
     }
   }
 
@@ -79,7 +91,7 @@ function PlayButton() {
   return (
     <>
       <YouTube
-        opts={opts}
+        opts={opts} //hides the video from Youtube
         className="youtube-player"
         onPlay={fetchSongTitle}
         onReady={(event) => {
