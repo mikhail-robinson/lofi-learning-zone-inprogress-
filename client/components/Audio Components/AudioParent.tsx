@@ -1,24 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
-import YouTube from 'react-youtube'
-import YOUTUBE_API_KEY from './config'
+import { useState, useEffect, useRef } from 'react'
+import YOUTUBE_API_KEY from '../config'
+import YouTubePlayer from './YoutubePlayer'
+import Loading from './Loading'
+import PlayPauseButton from './PlayPauseButton'
+import CurrentSong from './CurrentSong'
 
-const PLAYLIST_ID = 'PLOzDu-MXXLliO9fBNZOQTBDddoA3FzZUo'
 const YOUTUBE_API_URL =
   'https://www.googleapis.com/youtube/v3/videos?part=snippet'
 // const LIVE_ATC_URL =
 //   'https://www.liveatc.net/hlisten.php?mount=kpoc2_klax_app_east_feeder&icao=klax'
 
-const playerVars = {
-  autoplay: 0,
-  listType: 'playlist',
-  list: PLAYLIST_ID,
-  controls: 0,
-  showinfo: 0,
-  iv_load_policy: 3,
-}
-
-interface Player {
+export interface Player {
   getPlaylist: () => string[]
   getPlaylistIndex: () => number
   pauseVideo: () => void
@@ -82,33 +74,19 @@ function PlayButton() {
     }
   }
 
-  const opts = {
-    height: '0',
-    width: '0',
-    playerVars,
+  const handlePlayerReady = (event: { target: Player | null }) => {
+    playerRef.current = event.target
   }
 
   return (
     <>
-      <YouTube
-        opts={opts} //hides the video from Youtube
-        className="youtube-player"
-        onPlay={fetchSongTitle}
-        onReady={(event) => {
-          playerRef.current = event.target
-        }}
+      <YouTubePlayer onReady={handlePlayerReady} />
+      <Loading isLoading={isLoading} />
+      <PlayPauseButton
+        isPlaying={isPlaying}
+        handleMusicPlaylist={handleMusicPlaylist}
       />
-      {isLoading && <p>Loading...</p>}
-      {isPlaying ? (
-        <button onClick={handleMusicPlaylist}>
-          <AiFillPauseCircle />
-        </button>
-      ) : (
-        <button onClick={handleMusicPlaylist}>
-          <AiFillPlayCircle />
-        </button>
-      )}
-      {currentSong && <p>Current Song: {currentSong}</p>}
+      <CurrentSong currentSong={currentSong} />
     </>
   )
 }
