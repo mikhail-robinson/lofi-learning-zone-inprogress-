@@ -3,8 +3,8 @@ import AudioParent from './Audio Components/AudioParent'
 
 function App() {
   return (
-    <div>
-      <h1>Cosy Zone</h1>
+    <div className='bg-gif h-screen w-screen"'>
+      <h1 className="flex items-center justify-center text-6xl">Study Zone</h1>
       <Routes>
         <Route path="/" element={<AudioParent />} />
       </Routes>

@@ -10,7 +10,7 @@ function PlayPauseButton({
   handleMusicPlaylist,
 }: PlayPauseButtonProps) {
   return (
-    <button onClick={handleMusicPlaylist}>
+    <button className="text-6xl" onClick={handleMusicPlaylist}>
       {isPlaying ? <AiFillPauseCircle /> : <AiFillPlayCircle />}
     </button>
   )

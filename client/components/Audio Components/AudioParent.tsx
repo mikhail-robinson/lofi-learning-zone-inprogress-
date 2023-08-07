@@ -79,7 +79,7 @@ function AudioParent() {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center">
       <YouTubePlayer onReady={handlePlayerReady} />
       <Loading isLoading={isLoading} />
       <PlayPauseButton
@@ -87,7 +87,7 @@ function AudioParent() {
         handleMusicPlaylist={handleMusicPlaylist}
       />
       <CurrentSong currentSong={currentSong} />
-    </>
+    </div>
   )
 }
 
