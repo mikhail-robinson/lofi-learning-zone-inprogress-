@@ -21,7 +21,7 @@ function getYoutubeApiUrl(videoId: string) {
   return `${YOUTUBE_API_URL}&id=${videoId}&key=${YOUTUBE_API_KEY}`
 }
 
-function PlayButton() {
+function AudioParent() {
   const [isPlaying, setIsPlaying] = useState(false) //indicates if the music is playing
   const [currentSong, setCurrentSong] = useState('') //stores the current song
   const [isLoading, setIsLoading] = useState(false) //inidicates if the app is loading or not
@@ -91,4 +91,6 @@ function PlayButton() {
   )
 }
 
-export default PlayButton
+console.log('Audio Parent compoonent Rendered')
+
+export default AudioParent
