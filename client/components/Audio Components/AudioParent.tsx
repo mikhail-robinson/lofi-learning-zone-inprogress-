@@ -91,6 +91,4 @@ function AudioParent() {
   )
 }
 
-console.log('Audio Parent compoonent Rendered')
-
 export default AudioParent

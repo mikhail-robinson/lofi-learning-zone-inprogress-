@@ -3,14 +3,13 @@ import AudioParent from './Audio Components/AudioParent'
 
 function App() {
   return (
-    <>
+    <div>
       <h1>Cosy Zone</h1>
       <Routes>
         <Route path="/" element={<AudioParent />} />
       </Routes>
-    </>
+    </div>
   )
 }
-console.log('app component rendered')
 
 export default App
