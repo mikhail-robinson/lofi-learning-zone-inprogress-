@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import AudioParent from './Audio Components/AudioParent'
+import StudyBot from './Study Bot/StudyBot'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AudioParent />} />
       </Routes>
+      <StudyBot />
     </div>
   )
 }
