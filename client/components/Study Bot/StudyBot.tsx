@@ -1,38 +1,28 @@
-import { Configuration, OpenAIApi } from 'openai'
-import { SetStateAction, useState } from 'react'
-import OPENAI_API_KEY from '../config'
+import { useState } from 'react'
+import { studyQuestion } from '../../apis/study'
 
 function StudyBot() {
-  const [input, setInput] = useState('')
-  const [response, setResponse] = useState('')
+  const [question, setQuestion] = useState('')
+  const [answer, setAnswer] = useState('')
 
-  const configuration = new Configuration({
-    apiKey: OPENAI_API_KEY,
-  })
-  const openai = new OpenAIApi(configuration)
-
-  const handleInputChange = (event: {
-    target: { value: SetStateAction<string> }
-  }) => {
-    setInput(event.target.value)
-  }
-
-  const handleSubmit = async () => {
-    const chatCompletion = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: input }],
-    })
-    setResponse(chatCompletion.data.choices[0]?.message?.content || '')
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const response = await studyQuestion(question)
+    setAnswer(response) // assuming the response is the answer you want to display
   }
 
   return (
     <div>
-      <h1>This is the study bot</h1>
-      <input type="text" value={input} onChange={handleInputChange} />
-      <button onClick={handleSubmit}>Submit</button>
-      <p>{response}</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+        />
+        <button type="submit">Ask</button>
+      </form>
+      {answer && <p>{answer}</p>}
     </div>
   )
 }
-
 export default StudyBot
