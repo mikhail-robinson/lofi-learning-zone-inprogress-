@@ -17,13 +17,14 @@ function StudyBot() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="question"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         />
-        <button type="submit">Ask</button>
+        <button className="text-white" type="submit">
+          Ask
+        </button>
       </form>
-      {answer && <p>{answer}</p>}
+      {answer && <p className="w-1/2 text-center text-white">{answer}</p>}
     </div>
   )
 }
