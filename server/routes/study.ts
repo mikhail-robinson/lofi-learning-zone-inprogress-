@@ -2,7 +2,6 @@ import { Router } from 'express'
 import { Configuration, OpenAIApi } from 'openai'
 
 const router = Router()
-console.log(process.env, 'this is the configuration')
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -21,7 +20,7 @@ router.post('/', async (req, res) => {
 
     res.json(chatCompletion.data.choices[0]?.message?.content || '')
   } catch (error) {
-    // console.log(error)
+    console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
   }
 })
