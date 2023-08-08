@@ -8,14 +8,16 @@ function StudyBot() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const response = await studyQuestion(question)
-    setAnswer(response) // assuming the response is the answer you want to display
+    setAnswer(response)
+    setQuestion('')
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="question"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         />
