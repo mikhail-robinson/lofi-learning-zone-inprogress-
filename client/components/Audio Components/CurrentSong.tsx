@@ -3,7 +3,9 @@ interface CurrentSongProps {
 }
 
 function CurrentSong({ currentSong }: CurrentSongProps) {
-  return currentSong && <p>Current Song: {currentSong}</p>
+  return (
+    currentSong && <p className="text-white">Current Song: {currentSong}</p>
+  )
 }
 
 export default CurrentSong
