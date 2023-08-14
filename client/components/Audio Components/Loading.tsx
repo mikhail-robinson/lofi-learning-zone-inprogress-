@@ -3,7 +3,7 @@ interface LoadingProps {
 }
 
 function Loading({ isLoading }: LoadingProps) {
-  return isLoading && <p>Loading...</p>
+  return isLoading && <p className="text-white">Loading...</p>
 }
 
 export default Loading
