@@ -1,10 +1,6 @@
-import { studyQuestion } from '../client/apis/study'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import StudyBot from '../client/components/Study Bot/StudyBot'
+import { render, screen, fireEvent } from '@testing-library/react'
 import App from '../client/components/App'
-
 import { describe, it, expect, vi } from 'vitest'
-
 import { BrowserRouter } from 'react-router-dom'
 import AudioParent from '../client/components/Audio Components/AudioParent'
 
