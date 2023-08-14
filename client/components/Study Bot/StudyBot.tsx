@@ -13,7 +13,7 @@ function StudyBot() {
   }
 
   return (
-    <div className="bg-gray-900 shadow-lg rounded p-3 w-4/5 flex flex-col items-center justify-center py-6 mt-40">
+    <div className="bg-gray-900 shadow-lg rounded p-3 w-3/5 flex flex-col items-center justify-center py-6 mt-10">
       <div className="w-full bg-gray-900 rounded bg-opacity-60 flex flex-col items-center justify-center space-y-4">
         <form
           onSubmit={handleSubmit}
