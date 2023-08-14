@@ -6,7 +6,7 @@ function App() {
   return (
     <main className="grid place-items-center min-h-screen bg-gradient-to-t from-blue-200 to-indigo-900 p-5">
       <div className="flex flex-col items-center justify-center w-full">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-200 mb-5">
+        <h1 className="text-7xl md:text-7xl font-bold text-gray-200 mb-5">
           Study Zone
         </h1>
         <Routes>
