@@ -79,14 +79,16 @@ function AudioParent() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="bg-gray-900 shadow-lg rounded p-3 w-1/5 relative h-36">
       <YouTubePlayer onReady={handlePlayerReady} />
-      <Loading isLoading={isLoading} />
-      <PlayPauseButton
-        isPlaying={isPlaying}
-        handleMusicPlaylist={handleMusicPlaylist}
-      />
-      <CurrentSong currentSong={currentSong} />
+      <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-3/4 bg-black rounded bg-opacity-0 flex flex-col items-center justify-center">
+        <Loading isLoading={isLoading} />
+        <PlayPauseButton
+          isPlaying={isPlaying}
+          handleMusicPlaylist={handleMusicPlaylist}
+        />
+        <CurrentSong currentSong={currentSong} />
+      </div>
     </div>
   )
 }
