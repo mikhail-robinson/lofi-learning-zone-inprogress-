@@ -10,7 +10,11 @@ function PlayPauseButton({
   handleMusicPlaylist,
 }: PlayPauseButtonProps) {
   return (
-    <button className="text-6xl text-white" onClick={handleMusicPlaylist}>
+    <button
+      className="text-6xl text-white"
+      onClick={handleMusicPlaylist}
+      aria-label={isPlaying ? 'Pause' : 'Play'}
+    >
       {isPlaying ? <AiFillPauseCircle /> : <AiFillPlayCircle />}
     </button>
   )

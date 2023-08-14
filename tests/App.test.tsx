@@ -1,56 +1,69 @@
+import { studyQuestion } from '../client/apis/study'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import StudyBot from '../client/components/Study Bot/StudyBot'
 import App from '../client/components/App'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
-import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import AudioParent from '../client/components/Audio Components/AudioParent'
+
+afterEach(() => {
+  vi.clearAllMocks()
+})
 
 describe('App', () => {
-  it('renders headline', () => {
+  it('renders heading', () => {
+    // ARRANGE
     render(
       <BrowserRouter>
         <App />
       </BrowserRouter>,
     )
-    const headline = screen.getByText(/Study Zone/i)
-    expect(headline).toBeInTheDocument()
+    // ACT
+    const heading = screen.getByRole('heading')
+    // ASSERT
+    expect(heading.innerHTML).toMatch(/Study Zone/i)
   })
 })
 
-// jest.mock('../actions')
-// const fetchFruits_ = fetchFruits as jest.Mock<ReturnType<typeof fetchFruits>>
-// const mockStore = store as jest.Mocked<typeof store>
+describe('AudioParent', () => {
+  it('plays audio when the play button is clicked', () => {
+    render(<AudioParent />)
 
-// fetchFruits_.mockImplementation(() => async () => {})
-// test('page header includes fruit', () => {
-//   render(
-//     <Provider store={store}>
-//       <App />
-//     </Provider>,
-//   )
-//   const heading = screen.getByRole('heading')
-//   expect(heading.innerHTML).toMatch(/Fruit/)
-// })
+    // Find the play button and click it
+    const playButton = screen.getByRole('button', { name: /Play/i })
+    fireEvent.click(playButton)
 
-// test('renders an <li> for each fruit', () => {
-//   const fruits = ['orange', 'persimmons', 'kiwi fruit']
-//   jest.spyOn(store, 'getState')
-//   mockStore.getState.mockImplementation(() => ({ fruits }))
+    const pauseButton = screen.getByRole('button', { name: /Pause/i })
+    expect(pauseButton).toBeInTheDocument()
+  })
+})
 
-//   render(
-//     <Provider store={store}>
-//       <App />
-//     </Provider>,
-//   )
-//   const li = screen.getAllByRole('listitem')
-//   expect(li).toHaveLength(3)
-// })
+// const mockedAnswer = 'Mocked answer'
 
-// test('dispatches fetchFruits action', () => {
-//   render(
-//     <Provider store={store}>
-//       <App />
-//     </Provider>,
-//   )
-//   expect(fetchFruits).toHaveBeenCalled()
+// // Mock the module with the desired behavior
+// vi.mock('../../apis/study', () => ({
+//   studyQuestion: vi.fn().mockResolvedValue(mockedAnswer),
+// }))
+
+// describe('StudyBot', () => {
+//   it('displays answer after form submission', async () => {
+//     render(<StudyBot />)
+
+//     // Fill the question and submit
+//     fireEvent.change(screen.getByPlaceholderText('Ask me a question!'), {
+//       target: { value: 'How are you?' },
+//     })
+//     fireEvent.click(screen.getByText('Ask'))
+
+//     // Check the rendered answer
+//     await waitFor(() => {
+//       expect(screen.getByText(mockedAnswer)).toBeInTheDocument()
+//     })
+//   })
+
+//   afterEach(() => {
+//     vi.clearAllMocks()
+//   })
 // })
