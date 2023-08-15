@@ -59,7 +59,7 @@ function AudioParent() {
     }
   }
 
-  function handleMusicPlaylist() {
+  function togglePlayPause() {
     //controls the pause/play functionality of the youtube player
     setIsPlaying((prevState) => !prevState) //if the isPLaying state is set to true then set it to false and vice versa
     setCurrentSong('') // clears current song when audio is paused
@@ -87,7 +87,7 @@ function AudioParent() {
         <Loading isLoading={isLoading} />
         <PlayPauseButton
           isPlaying={isPlaying}
-          handleMusicPlaylist={handleMusicPlaylist}
+          togglePlayPause={togglePlayPause}
         />
         <CurrentSong currentSong={currentSong} />
       </div>

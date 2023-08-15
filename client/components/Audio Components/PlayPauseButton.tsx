@@ -2,17 +2,14 @@ import { AiFillPauseCircle, AiFillPlayCircle } from 'react-icons/ai'
 
 interface PlayPauseButtonProps {
   isPlaying: boolean
-  handleMusicPlaylist: () => void
+  togglePlayPause: () => void
 }
 
-function PlayPauseButton({
-  isPlaying,
-  handleMusicPlaylist,
-}: PlayPauseButtonProps) {
+function PlayPauseButton({ isPlaying, togglePlayPause }: PlayPauseButtonProps) {
   return (
     <button
       className="text-6xl text-white"
-      onClick={handleMusicPlaylist}
+      onClick={togglePlayPause}
       aria-label={isPlaying ? 'Pause' : 'Play'}
     >
       {isPlaying ? <AiFillPauseCircle /> : <AiFillPlayCircle />}
