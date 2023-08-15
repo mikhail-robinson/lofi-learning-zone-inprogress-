@@ -40,7 +40,7 @@ function AudioParent() {
     try {
       setIsLoading(true)
       const videoId =
-        playerRef.current?.getPlaylist()[playerRef.current?.getPlaylistIndex()]
+        playerRef.current?.getPlaylist()[playerRef.current?.getPlaylistIndex()] //gets the index number of the current playlist as the videoid
 
       if (videoId) {
         const response = await fetch(getYoutubeApiUrl(videoId))
@@ -61,9 +61,10 @@ function AudioParent() {
 
   function handleMusicPlaylist() {
     //controls the pause/play functionality of the youtube player
-    setIsPlaying((prevState) => !prevState)
-    setCurrentSong('')
+    setIsPlaying((prevState) => !prevState) //if the isPLaying state is set to true then set it to false and vice versa
+    setCurrentSong('') // clears current song when audio is paused
     if (playerRef.current) {
+      //checks if playerRef.current exists indicating the youtube player is ready
       if (isPlaying) {
         playerRef.current.pauseVideo()
         // atcAudioRef.current.pause()
@@ -75,6 +76,7 @@ function AudioParent() {
   }
 
   const handlePlayerReady = (event: { target: Player | null }) => {
+    // ensures that the component knows when the youtube player is ready to play the audio
     playerRef.current = event.target
   }
 
