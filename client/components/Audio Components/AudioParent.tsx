@@ -61,8 +61,8 @@ function AudioParent() {
 
   function togglePlayPause() {
     //controls the pause/play functionality of the youtube player
-    setIsPlaying((prevState) => !prevState) //if the isPLaying state is set to true then set it to false and vice versa
-    setCurrentSong('') // clears current song when audio is paused
+    setIsPlaying((prevState) => !prevState) //ensures that the state is updated based on the most recent value
+    setCurrentSong('')
     if (playerRef.current) {
       //checks if playerRef.current exists indicating the youtube player is ready
       if (isPlaying) {
