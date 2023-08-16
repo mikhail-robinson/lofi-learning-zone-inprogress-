@@ -15,8 +15,6 @@ router.post('/', async (req, res) => {
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: message }],
     })
-    // console.log(chatCompletion, 'this is the chat completion')
-    // console.log(message, 'this is the message')
 
     res.json(chatCompletion.data.choices[0]?.message?.content || '')
   } catch (error) {
